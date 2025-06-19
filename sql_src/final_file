@@ -1,0 +1,14 @@
+SELECT vendorid,
+    date_trunc('hour', tpep_pickup_datetime) as pickup_hour,
+    round(avg(passenger_count)::NUMERIC, 2) as avg_passenger_count,
+    round(sum(passenger_count)::NUMERIC, 2) as total_passenger_count,
+    round(avg(trip_distance)::NUMERIC, 2) as avg_trip_distance,
+    round(sum(trip_distance)::NUMERIC, 2) as total_trip_distance,
+    round(avg(fare_amount)::NUMERIC, 2) as avg_fare_amount,
+    round(sum(fare_amount)::NUMERIC, 2) as total_fare_amount,
+    round(avg(total_amount)::NUMERIC, 2) as avg_total_amount,
+    round(sum(total_amount)::NUMERIC, 2) as total_amount_paid,
+    count(*) as total_trips
+from yellow.taxi_trips
+where tpep_pickup_datetime BETWEEN '2023-01-01' and  '2024-12-31'
+GROUP BY vendorid, pickup_hour
