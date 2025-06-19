@@ -1,3 +1,4 @@
+#SQL code used to create a dashbord in PowerBi.  
 SELECT vendorid,
     date_trunc('hour', tpep_pickup_datetime) as pickup_hour,
     round(avg(passenger_count)::NUMERIC, 2) as avg_passenger_count,
